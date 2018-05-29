@@ -76,8 +76,8 @@ public:
         consensus.nSubsidyHalvingInterval = 210000;
         consensus.BIP34Height = 80000;
         consensus.BIP34Hash = uint256S("0x00000000218e189b4268e72f40e2fab3b95995ab2c4cb195eba1f10ad20c122c");
-        consensus.BIP65Height = 80500; 
-        consensus.BIP66Height = 80500; 
+        consensus.BIP65Height = 85000; 
+        consensus.BIP66Height = 85000; 
         consensus.powLimit = uint256S("00000fffff000000000000000000000000000000000000000000000000000000");//"00000000ffffffffffffffffffffffffffffffffffffffffffffffffffffffff");
         consensus.nPowTargetTimespan = 6 * 24 * 60 * 60; // two weeks
         consensus.nPowTargetSpacing = 5 * 60;
@@ -88,19 +88,19 @@ public:
         consensus.vDeployments[Consensus::DEPLOYMENT_TESTDUMMY].bit = 28;
         consensus.vDeployments[Consensus::DEPLOYMENT_TESTDUMMY].nStartTime = 1535760000; // Sep 1 2018 @ 0:00am (UTC)
         consensus.vDeployments[Consensus::DEPLOYMENT_TESTDUMMY].nTimeout = 1525132800; // 1 May 2018 @ 0:00am (UTC)
-	consensus.vDeployments[Consensus::DEPLOYMENT_TESTDUMMY].nHeight = 80500;
+	consensus.vDeployments[Consensus::DEPLOYMENT_TESTDUMMY].nHeight = 85000;
 
         // Deployment of BIP68, BIP112, and BIP113.
         consensus.vDeployments[Consensus::DEPLOYMENT_CSV].bit = 0;
         consensus.vDeployments[Consensus::DEPLOYMENT_CSV].nStartTime = 1535760000; // Sep 1 2018 @ 0:00am (UTC)
         consensus.vDeployments[Consensus::DEPLOYMENT_CSV].nTimeout = 1607990400; // 12/15/2020 @ 12:00am (UTC)
-        consensus.vDeployments[Consensus::DEPLOYMENT_CSV].nHeight = 80500;
+        consensus.vDeployments[Consensus::DEPLOYMENT_CSV].nHeight = 85000;
 
         // Deployment of SegWit (BIP141, BIP143, and BIP147)
         consensus.vDeployments[Consensus::DEPLOYMENT_SEGWIT].bit = 1;
         consensus.vDeployments[Consensus::DEPLOYMENT_SEGWIT].nStartTime = 1535760000; // Sep 1 2018 @ 0:00am (UTC)
         consensus.vDeployments[Consensus::DEPLOYMENT_SEGWIT].nTimeout = 1607990400; // 12/15/2020 @ 12:00am (UTC)
-        consensus.vDeployments[Consensus::DEPLOYMENT_SEGWIT].nHeight = 80500;
+        consensus.vDeployments[Consensus::DEPLOYMENT_SEGWIT].nHeight = 85000;
 
         // The best chain should have at least this much work.
         //consensus.nMinimumChainWork = uint256S("0x000000000000000000000000000000000000000000000000000fe8df6ab2a54f");
@@ -119,14 +119,14 @@ public:
         pchMessageStart[2] = 0xc2;    
         pchMessageStart[3] = 0xf9;    
         nDefaultPort = 7444;
-        nPruneAfterHeight = 80000;
+        nPruneAfterHeight = 100000;
 
         genesis = CreateGenesisBlock(1504224000, 25912842, 0x1e0ffff0, 1, 100 * COIN);//Time, Nonce,nBits, version, reward
         consensus.hashGenesisBlock = genesis.GetHash();
         assert(consensus.hashGenesisBlock == uint256S("0x00000bf56638a0f85009007e92cd848160d5211da779fd4e23f4bd22f0f5221a"));
         assert(genesis.hashMerkleRoot == uint256S("0x5bab319403ecce5eccd4715162fd72d35313064211ff16fccde441a12b2b93b8"));
 	    
-        vSeeds.push_back(CDNSSeedData("162.213.250.203", "162.213.250.203"));
+        vSeeds.push_back(CDNSSeedData("162.213.250.203", "162.213.250.203","true"));
         vSeeds.push_back(CDNSSeedData("5.149.254.22", "5.149.254.22"));
         vSeeds.push_back(CDNSSeedData("5.149.254.11", "5.149.254.11"));
         vSeeds.push_back(CDNSSeedData("77.220.215.168", "77.220.215.168"));
