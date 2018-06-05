@@ -86,9 +86,9 @@ public:
         consensus.nRuleChangeActivationThreshold = 1; // if we found only one block
         consensus.nMinerConfirmationWindow = 1728; // nPowTargetTimespan / nPowTargetSpacing
         consensus.vDeployments[Consensus::DEPLOYMENT_TESTDUMMY].bit = 28;
-        consensus.vDeployments[Consensus::DEPLOYMENT_TESTDUMMY].nStartTime = 1535760000; // Sep 1 2018 @ 0:00am (UTC)
-        consensus.vDeployments[Consensus::DEPLOYMENT_TESTDUMMY].nTimeout = 1525132800; // 1 May 2018 @ 0:00am (UTC)
-	consensus.vDeployments[Consensus::DEPLOYMENT_TESTDUMMY].nHeight = 85000;
+        consensus.vDeployments[Consensus::DEPLOYMENT_TESTDUMMY].nStartTime = 1525132800; // May 1 2018 @ 0:00am (UTC)
+        consensus.vDeployments[Consensus::DEPLOYMENT_TESTDUMMY].nTimeout = 1535760000; // 1 Sep 2018 @ 0:00am (UTC)
+	consensus.vDeployments[Consensus::DEPLOYMENT_TESTDUMMY].nHeight = 80000;
 
         // Deployment of BIP68, BIP112, and BIP113.
         consensus.vDeployments[Consensus::DEPLOYMENT_CSV].bit = 0;
