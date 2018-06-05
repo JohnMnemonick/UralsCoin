@@ -1434,8 +1434,8 @@ bool IsInitialBlockDownload()
         return false;
 	}
     if (fImporting || fReindex){
-		LogPrintf("fImporting || fReindex");
         return true;
+		LogPrintf("fImporting || fReindex");
 	}
     if (chainActive.Tip() == NULL){
 		LogPrintf("chainActive.Tip() == NULL");
