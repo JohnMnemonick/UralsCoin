@@ -179,12 +179,12 @@ class CTestNetParams : public CChainParams {
 public:
     CTestNetParams() {
         strNetworkID = "test";
-        consensus.nSubsidyHalvingInterval = 1500;
+        consensus.nSubsidyHalvingInterval = 1000;
         //consensus.BIP34Height = 21111;
         consensus.BIP34Height = 600;
         consensus.BIP34Hash = uint256S("0x000006521af2fa46fef634f70a077bd30f61555692f4132ad1417ba6bff58688");
-        consensus.BIP65Height = 1400; 
-        consensus.BIP66Height = 1000;
+        consensus.BIP65Height = 950; 
+        consensus.BIP66Height = 850;
         //consensus.powLimit = uint256S("00000fffff000000000000000000000000000000000000000000000000000000");//"00000000ffffffffffffffffffffffffffffffffffffffffffffffffffffffff");
         consensus.powLimit = uint256S("0fffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffff");//"00000000ffffffffffffffffffffffffffffffffffffffffffffffffffffffff");
         //consensus.nPowTargetTimespan = 14 * 24 * 60 * 60; // two weeks
