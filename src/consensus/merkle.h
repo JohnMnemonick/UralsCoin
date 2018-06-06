@@ -1,9 +1,10 @@
 // Copyright (c) 2015 The Bitsend Core developers
+// Copyright (c) 2017-2018 The Urals developers
 // Distributed under the MIT software license, see the accompanying
 // file COPYING or http://www.opensource.org/licenses/mit-license.php.
 
-#ifndef BITSEND_MERKLE
-#define BITSEND_MERKLE
+#ifndef URALS_MERKLE
+#define URALS_MERKLE
 
 #include <stdint.h>
 #include <vector>

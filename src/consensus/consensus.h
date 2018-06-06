@@ -5,8 +5,8 @@
 // Distributed under the MIT software license, see the accompanying
 // file COPYING or http://www.opensource.org/licenses/mit-license.php.
 
-#ifndef BITSEND_CONSENSUS_CONSENSUS_H
-#define BITSEND_CONSENSUS_CONSENSUS_H
+#ifndef URALS_CONSENSUS_CONSENSUS_H
+#define URALS_CONSENSUS_CONSENSUS_H
 
 #include <stdint.h>
 
@@ -30,4 +30,4 @@ enum {
     LOCKTIME_MEDIAN_TIME_PAST = (1 << 1),
 };
 
-#endif // BITSEND_CONSENSUS_CONSENSUS_H
+#endif // URALS_CONSENSUS_CONSENSUS_H

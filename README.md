@@ -1,5 +1,5 @@
-## URALS - Urals Core 0.14.0.2
-## The Masternodecoin with Core 0.14 and Segwit Support
+## URALS - Urals Coin 1.1.0.13
+## The Masternodecoin with Segwit Support
 ---WARNING----This Branch is under development----
 If you want to build or use source, please relay on release tags, or branches. This branch is highly experimental.
 

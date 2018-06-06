@@ -1,4 +1,5 @@
-// Copyright (c) 2014 The URALS Core developers
+// Copyright (c) 2014 The Bitcoin Core developers
+// Copyright (c) 2018 The URALS developers
 // Distributed under the MIT software license, see the accompanying
 // file COPYING or http://www.opensource.org/licenses/mit-license.php.
 
