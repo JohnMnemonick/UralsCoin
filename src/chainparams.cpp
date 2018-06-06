@@ -179,23 +179,24 @@ class CTestNetParams : public CChainParams {
 public:
     CTestNetParams() {
         strNetworkID = "test";
-        consensus.nSubsidyHalvingInterval = 210000;
+        consensus.nSubsidyHalvingInterval = 2500;
         //consensus.BIP34Height = 21111;
         consensus.BIP34Height = 600;
         consensus.BIP34Hash = uint256S("0x000006521af2fa46fef634f70a077bd30f61555692f4132ad1417ba6bff58688");
-        consensus.BIP65Height = 850; 
-        consensus.BIP66Height = 750;
+        consensus.BIP65Height = 2400; 
+        consensus.BIP66Height = 2000;
         //consensus.powLimit = uint256S("00000fffff000000000000000000000000000000000000000000000000000000");//"00000000ffffffffffffffffffffffffffffffffffffffffffffffffffffffff");
         consensus.powLimit = uint256S("0fffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffff");//"00000000ffffffffffffffffffffffffffffffffffffffffffffffffffffffff");
-        consensus.nPowTargetTimespan = 14 * 24 * 60 * 60; // two weeks
+        //consensus.nPowTargetTimespan = 14 * 24 * 60 * 60; // two weeks
+        consensus.nPowTargetTimespan = 60; 
         consensus.nPowTargetSpacing = 10 * 60;
         consensus.fPowAllowMinDifficultyBlocks = true;
         //consensus.fPowNoRetargeting = false;
         consensus.fPowNoRetargeting = true;
         //consensus.nRuleChangeActivationThreshold = 1512;
-        consensus.nRuleChangeActivationThreshold = 108;
+        consensus.nRuleChangeActivationThreshold = 54;
         //consensus.nMinerConfirmationWindow = 2016;
-        consensus.nMinerConfirmationWindow = 144;
+        consensus.nMinerConfirmationWindow = 77;
         consensus.vDeployments[Consensus::DEPLOYMENT_TESTDUMMY].bit = 28;
         consensus.vDeployments[Consensus::DEPLOYMENT_TESTDUMMY].nStartTime = 1526342400; // May 15, 2018
         consensus.vDeployments[Consensus::DEPLOYMENT_TESTDUMMY].nTimeout = 1567296000; //Sep 1, 2019
