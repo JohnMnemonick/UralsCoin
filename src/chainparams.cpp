@@ -94,20 +94,20 @@ public:
         consensus.vDeployments[Consensus::DEPLOYMENT_CSV].bit = 0;
         consensus.vDeployments[Consensus::DEPLOYMENT_CSV].nStartTime = 1535760000; // Sep 1 2018 @ 0:00am (UTC)
         consensus.vDeployments[Consensus::DEPLOYMENT_CSV].nTimeout = 1607990400; // 12/15/2020 @ 12:00am (UTC)
-        consensus.vDeployments[Consensus::DEPLOYMENT_CSV].nHeight = 100000;
+        consensus.vDeployments[Consensus::DEPLOYMENT_CSV].nHeight = 91500;
 
         // Deployment of SegWit (BIP141, BIP143, and BIP147)
         consensus.vDeployments[Consensus::DEPLOYMENT_SEGWIT].bit = 1;
         consensus.vDeployments[Consensus::DEPLOYMENT_SEGWIT].nStartTime = 1535760000; // Sep 1 2018 @ 0:00am (UTC)
         consensus.vDeployments[Consensus::DEPLOYMENT_SEGWIT].nTimeout = 1607990400; // 12/15/2020 @ 12:00am (UTC)
-        consensus.vDeployments[Consensus::DEPLOYMENT_SEGWIT].nHeight = 100000;
+        consensus.vDeployments[Consensus::DEPLOYMENT_SEGWIT].nHeight = 92000;
 
         // The best chain should have at least this much work.
         //consensus.nMinimumChainWork = uint256S("0x000000000000000000000000000000000000000000000000000fe8df6ab2a54f");
         consensus.nMinimumChainWork = uint256S("0x000000000000000000000000000000000000000000000000000000df6ab2a54f");
         // By default assume that the signatures in ancestors of this block are valid.
         // consensus.defaultAssumeValid = uint256S("0x00000000000000000013176bf8d7dfeab4e1db31dc93bc311b436e82ab226b90"); //453354
-        consensus.defaultAssumeValid = uint256S("0x00000000218e189b4268e72f40e2fab3b95995ab2c4cb195eba1f10ad20c122c"); //80000
+        consensus.defaultAssumeValid = uint256S("0x000000001560866c21324eaba656d156965ccc1d05937d85ae189a89f3c98752"); //90000
 
         /**
          * The message start string is designed to be unlikely to occur in normal data.
@@ -119,7 +119,7 @@ public:
         pchMessageStart[2] = 0xc2;    
         pchMessageStart[3] = 0xf9;    
         nDefaultPort = 7444;
-        nPruneAfterHeight = 100000;
+        nPruneAfterHeight = 1000;
 
         genesis = CreateGenesisBlock(1504224000, 25912842, 0x1e0ffff0, 1, 100 * COIN);//Time, Nonce,nBits, version, reward
         consensus.hashGenesisBlock = genesis.GetHash();
@@ -147,8 +147,8 @@ public:
 
         checkpointData = (CCheckpointData) {
             boost::assign::map_list_of 
-	(  0, uint256S("0x00000bf56638a0f85009007e92cd848160d5211da779fd4e23f4bd22f0f5221a")) //uralsdev 02-2018
-/*	( 100, uint256S("0x00000d1135604f0f6391f3b16d05c348c8901cbace293ecfd84a5f535a4f8e18"))
+	(  0, uint256S("0x00000bf56638a0f85009007e92cd848160d5211da779fd4e23f4bd22f0f5221a")) 
+	( 100, uint256S("0x00000d1135604f0f6391f3b16d05c348c8901cbace293ecfd84a5f535a4f8e18"))
         ( 3000, uint256S("0x000004d7d9610d957b43a160fb90c4f56961e91509bf17f18c42ba2060273c36"))
         ( 5000, uint256S("0x00000362aba9ec91f776f7d0d7e8e871ddb1af95b03dd62ce860fb15e0c14ba5"))
         ( 10000, uint256S("0x000000577880073a284ac6ebf21b7e380c4ae6ab6f9d040c8472d6f1fda107da"))
@@ -158,13 +158,18 @@ public:
         ( 35000, uint256S("0x000000002e8369b82c543ffc6d2dcfedf36662e0850641e5ff3348b6b16b1c35"))
         ( 41000, uint256S("0x0000000005e76c8e5e676ae4da985eed849c0abb2a878c010dd76837a9aa7820"))
         ( 45500, uint256S("0x00000000060f5fafdaeb078fd339c8473e8081e4119a220be7fee4eadd44d8b8"))
-        ( 49010, uint256S("0x00000000075e6171028f08883ebd88075576813e8d1b7bedd4b9eb76d2fa172e")) */
+        ( 49010, uint256S("0x00000000075e6171028f08883ebd88075576813e8d1b7bedd4b9eb76d2fa172e")) 
+	( 50010, uint256S("0x000000000a2961760b597d360297640885bad4eaf1625ee408a30396727a041a"))
+	( 60000, uint256S("0x000000000b53ec8235c58a1fd91152c1805b42566666dca972086e33cbc46ae4"))
+	( 70000, uint256S("0x00000000020ad39c92d00890489529c608ad60054df538dda0cee48d3cd10bb6"))
+	( 80010, uint256S("0x00000000171d455ca8cb03bbb32ab955ae30002cefd25c82eb1602ee95ec499c"))
+	( 90000, uint256S("0x000000001560866c21324eaba656d156965ccc1d05937d85ae189a89f3c98752"))
         };
 
         chainTxData = ChainTxData{
-            // Data as of block 0000000021644940fc30f72c0e36c20a30e7b5d64ba892845b3c724ed55eb5a9 (height 78400).
-            1527232907, // * UNIX timestamp of last known number of transactions
-            128762,  // * total number of transactions between genesis and that timestamp
+            // Data as of block 04458bb0a58bc8ea2ec08ccb043f4d409967612e09863047d624a5e345f32b3b (height 91128).
+            1529761253, // * UNIX timestamp of last known number of transactions
+            145853,  // * total number of transactions between genesis and that timestamp
                         //   (the tx=... number in the SetBestChain debug.log lines)
             2.0         // * estimated number of transactions per second after that timestamp
         };
@@ -179,24 +184,23 @@ class CTestNetParams : public CChainParams {
 public:
     CTestNetParams() {
         strNetworkID = "test";
-        consensus.nSubsidyHalvingInterval = 1000;
+        consensus.nSubsidyHalvingInterval = 210000;
         //consensus.BIP34Height = 21111;
         consensus.BIP34Height = 600;
         consensus.BIP34Hash = uint256S("0x000006521af2fa46fef634f70a077bd30f61555692f4132ad1417ba6bff58688");
-        consensus.BIP65Height = 950; 
-        consensus.BIP66Height = 850;
+        consensus.BIP65Height = 850; 
+        consensus.BIP66Height = 750;
         //consensus.powLimit = uint256S("00000fffff000000000000000000000000000000000000000000000000000000");//"00000000ffffffffffffffffffffffffffffffffffffffffffffffffffffffff");
         consensus.powLimit = uint256S("0fffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffff");//"00000000ffffffffffffffffffffffffffffffffffffffffffffffffffffffff");
-        //consensus.nPowTargetTimespan = 14 * 24 * 60 * 60; // two weeks
-        consensus.nPowTargetTimespan = 60; 
+        consensus.nPowTargetTimespan = 14 * 24 * 60 * 60; // two weeks
         consensus.nPowTargetSpacing = 10 * 60;
         consensus.fPowAllowMinDifficultyBlocks = true;
         //consensus.fPowNoRetargeting = false;
         consensus.fPowNoRetargeting = true;
         //consensus.nRuleChangeActivationThreshold = 1512;
-        consensus.nRuleChangeActivationThreshold = 54;
+        consensus.nRuleChangeActivationThreshold = 108;
         //consensus.nMinerConfirmationWindow = 2016;
-        consensus.nMinerConfirmationWindow = 77;
+        consensus.nMinerConfirmationWindow = 144;
         consensus.vDeployments[Consensus::DEPLOYMENT_TESTDUMMY].bit = 28;
         consensus.vDeployments[Consensus::DEPLOYMENT_TESTDUMMY].nStartTime = 1526342400; // May 15, 2018
         consensus.vDeployments[Consensus::DEPLOYMENT_TESTDUMMY].nTimeout = 1567296000; //Sep 1, 2019
