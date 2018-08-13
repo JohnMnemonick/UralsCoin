@@ -12,7 +12,7 @@ class CMNSignHelper{
 
 	public:
 	CScript collateralPubKey;
-    /// Is the inputs associated with this public key? (and there is 14000 URALS - checking if valid masternode)
+    /// Is the inputs associated with this public key? (and there is 50000 URALS - checking if valid masternode)
     bool IsVinAssociatedWithPubkey(CTxIn& vin, CPubKey& pubkey){
 		CScript payee2;
 		payee2=GetScriptForDestination(pubkey.GetID());
@@ -93,8 +93,7 @@ class CMNSignHelper{
     void InitCollateralAddress(){
         std::string strAddress = "";
         
-            strAddress = "iFoxApoYXNgEsstxaaGtn1NnbvuSL34726";
-            //LogPrintf("Zugriff auf StrAdress 341 darksend.h\n");
+            strAddress = "uLTmnomHSURxYWSr1Mh2RGkW4BxPFQPtSi";
         
         
         SetCollateralAddress(strAddress);
