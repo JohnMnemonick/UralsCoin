@@ -92,13 +92,13 @@ public:
 
         // Deployment of BIP68, BIP112, and BIP113.
         consensus.vDeployments[Consensus::DEPLOYMENT_CSV].bit = 0;
-        consensus.vDeployments[Consensus::DEPLOYMENT_CSV].nStartTime = 1535760000; // Sep 1 2018 @ 0:00am (UTC)
+        consensus.vDeployments[Consensus::DEPLOYMENT_CSV].nStartTime = 1533081600; // Aug 1 2018 @ 0:00am (UTC)
         consensus.vDeployments[Consensus::DEPLOYMENT_CSV].nTimeout = 1607990400; // 12/15/2020 @ 12:00am (UTC)
         consensus.vDeployments[Consensus::DEPLOYMENT_CSV].nHeight = 91500;
 
         // Deployment of SegWit (BIP141, BIP143, and BIP147)
         consensus.vDeployments[Consensus::DEPLOYMENT_SEGWIT].bit = 1;
-        consensus.vDeployments[Consensus::DEPLOYMENT_SEGWIT].nStartTime = 1535760000; // Sep 1 2018 @ 0:00am (UTC)
+        consensus.vDeployments[Consensus::DEPLOYMENT_SEGWIT].nStartTime = 1533081600; // Aug 1 2018 @ 0:00am (UTC)
         consensus.vDeployments[Consensus::DEPLOYMENT_SEGWIT].nTimeout = 1607990400; // 12/15/2020 @ 12:00am (UTC)
         consensus.vDeployments[Consensus::DEPLOYMENT_SEGWIT].nHeight = 92000;
 
@@ -148,30 +148,14 @@ public:
         checkpointData = (CCheckpointData) {
             boost::assign::map_list_of 
 	(  0, uint256S("0x00000bf56638a0f85009007e92cd848160d5211da779fd4e23f4bd22f0f5221a")) 
-	( 100, uint256S("0x00000d1135604f0f6391f3b16d05c348c8901cbace293ecfd84a5f535a4f8e18"))
-        ( 3000, uint256S("0x000004d7d9610d957b43a160fb90c4f56961e91509bf17f18c42ba2060273c36"))
-        ( 5000, uint256S("0x00000362aba9ec91f776f7d0d7e8e871ddb1af95b03dd62ce860fb15e0c14ba5"))
-        ( 10000, uint256S("0x000000577880073a284ac6ebf21b7e380c4ae6ab6f9d040c8472d6f1fda107da"))
-        ( 20000, uint256S("0x000000065f35161847c1ed0c2fee02596fb99931fa316522db330f782f5f3882"))
-        ( 25000, uint256S("0x0000000002a801db19ecda061a2be1e2428ebd112d9ddbc2b6ed3305267594c7"))
-        ( 30000, uint256S("0x00000000446eebe1b729b7d192d9b0f74b95e541eddee5419c6c8c47278f7e77"))
-        ( 35000, uint256S("0x000000002e8369b82c543ffc6d2dcfedf36662e0850641e5ff3348b6b16b1c35"))
-        ( 41000, uint256S("0x0000000005e76c8e5e676ae4da985eed849c0abb2a878c010dd76837a9aa7820"))
-        ( 45500, uint256S("0x00000000060f5fafdaeb078fd339c8473e8081e4119a220be7fee4eadd44d8b8"))
-        ( 49010, uint256S("0x00000000075e6171028f08883ebd88075576813e8d1b7bedd4b9eb76d2fa172e")) 
-	( 50010, uint256S("0x000000000a2961760b597d360297640885bad4eaf1625ee408a30396727a041a"))
-	( 60000, uint256S("0x000000000b53ec8235c58a1fd91152c1805b42566666dca972086e33cbc46ae4"))
-	( 70000, uint256S("0x00000000020ad39c92d00890489529c608ad60054df538dda0cee48d3cd10bb6"))
-	( 80010, uint256S("0x00000000171d455ca8cb03bbb32ab955ae30002cefd25c82eb1602ee95ec499c"))
-	( 90000, uint256S("0x000000001560866c21324eaba656d156965ccc1d05937d85ae189a89f3c98752"))
         };
 
         chainTxData = ChainTxData{
             // Data as of block 04458bb0a58bc8ea2ec08ccb043f4d409967612e09863047d624a5e345f32b3b (height 91128).
-            1529761253, // * UNIX timestamp of last known number of transactions
-            145853,  // * total number of transactions between genesis and that timestamp
+//            1529761253, // * UNIX timestamp of last known number of transactions
+//            145853,  // * total number of transactions between genesis and that timestamp
                         //   (the tx=... number in the SetBestChain debug.log lines)
-            2.0         // * estimated number of transactions per second after that timestamp
+//            2.0         // * estimated number of transactions per second after that timestamp
         };
     }
 };
