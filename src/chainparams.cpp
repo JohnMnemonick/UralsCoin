@@ -117,7 +117,14 @@ public:
         pchMessageStart[0] = 0xa3;    
         pchMessageStart[1] = 0xd5;    
         pchMessageStart[2] = 0xc2;    
-        pchMessageStart[3] = 0xf9;    
+        pchMessageStart[3] = 0xf9;     
+
+/*        pchMessageStart[0] = 0xa4;    
+        pchMessageStart[1] = 0xd6;    
+        pchMessageStart[2] = 0xc3;    
+        pchMessageStart[3] = 0xf0;     
+*/
+
         nDefaultPort = 7444;
         nPruneAfterHeight = 1000;
 
@@ -145,17 +152,25 @@ public:
         fRequireStandard = true;
         fMineBlocksOnDemand = false;
 
+	strSporkKey = "04fd2acf24b6951e16085650f7cc3cd83e6865ca9bf78e03db37707df047982dfef6a23e628dbf4810aa97e0bed0c7ed98782d71d68184d7ce8ca8de09d0b0f856";
+	strMasternodePaymentsPubKey = "04fd2acf24b6951e16085650f7cc3cd83e6865ca9bf78e03db37707df047982dfef6a23e628dbf4810aa97e0bed0c7ed98782d71d68184d7ce8ca8de09d0b0f856";
+	
         checkpointData = (CCheckpointData) {
             boost::assign::map_list_of 
-	(  0, uint256S("0x00000bf56638a0f85009007e92cd848160d5211da779fd4e23f4bd22f0f5221a")) 
+	(  0, uint256S("0x00000bf56638a0f85009007e92cd848160d5211da779fd4e23f4bd22f0f5221a"))
+	(5000, uint256S("0x00000362aba9ec91f776f7d0d7e8e871ddb1af95b03dd62ce860fb15e0c14ba5"))
+	(10000, uint256S("0x000000577880073a284ac6ebf21b7e380c4ae6ab6f9d040c8472d6f1fda107da"))
+	(50009, uint256S("0x000000000445f965fee3b9a4b6fa948ae953bc1dde9af67527fb622da5c0c8fc"))
+	(100000, uint256S("0x0000000000315d74432ac69ba826df7077756584c488b432e8c807c0ce171350"))
+	(115000, uint256S("0x00000000208f5100b5f8c71a269a2396d3934e8946060968444192a578dea1fc")) 
         };
 
         chainTxData = ChainTxData{
-            // Data as of block 04458bb0a58bc8ea2ec08ccb043f4d409967612e09863047d624a5e345f32b3b (height 91128).
-//            1529761253, // * UNIX timestamp of last known number of transactions
-//            145853,  // * total number of transactions between genesis and that timestamp
+            // Data as of block 000000002a1ad90c0aa8f9c40b96fd7ffc288ce04a37135085be1abc750184e2 (height 118288).
+            1536039390, // * UNIX timestamp of last known number of transactions
+            181575,  // * total number of transactions between genesis and that timestamp
                         //   (the tx=... number in the SetBestChain debug.log lines)
-//            2.0         // * estimated number of transactions per second after that timestamp
+            10.0         // * estimated number of transactions per second after that timestamp
         };
     }
 };
