@@ -155,8 +155,6 @@ public:
         fRequireStandard = true;
         fMineBlocksOnDemand = false;
 
-	strSporkKey = "04fd2acf24b6951e16085650f7cc3cd83e6865ca9bf78e03db37707df047982dfef6a23e628dbf4810aa97e0bed0c7ed98782d71d68184d7ce8ca8de09d0b0f856";
-	strMasternodePaymentsPubKey = "04fd2acf24b6951e16085650f7cc3cd83e6865ca9bf78e03db37707df047982dfef6a23e628dbf4810aa97e0bed0c7ed98782d71d68184d7ce8ca8de09d0b0f856";
 	
         checkpointData = (CCheckpointData) {
             boost::assign::map_list_of 
@@ -165,10 +163,10 @@ public:
 
         chainTxData = ChainTxData{
             // Data as of block 000000002a1ad90c0aa8f9c40b96fd7ffc288ce04a37135085be1abc750184e2 (height 118288).
-            1536039390, // * UNIX timestamp of last known number of transactions
-            181575,  // * total number of transactions between genesis and that timestamp
+            //1536039390, // * UNIX timestamp of last known number of transactions
+            //181575,  // * total number of transactions between genesis and that timestamp
                         //   (the tx=... number in the SetBestChain debug.log lines)
-            10.0         // * estimated number of transactions per second after that timestamp
+            //10.0         // * estimated number of transactions per second after that timestamp
         };
     }
 };
