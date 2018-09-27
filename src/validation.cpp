@@ -19,7 +19,7 @@
 
 #include "masternode-pos.h"
 #include "masternode.h"
-
+#include "masternodeman.h"
 
 #include "policy/fees.h"
 #include "policy/policy.h"
@@ -3193,6 +3193,24 @@ bool CheckBlock(const CBlock& block, CValidationState& state, const Consensus::P
                 // If we don't already have its previous block, skip masternode payment step
                 if (!fIsInitialDownload && pindex != NULL)
                 {
+                    CMasternode* winningNode = mnodeman.GetCurrentMasterNode(1);
+                    if (winningNode && pindex->nHeight > 130000) {
+                        //Check YIIMP bug
+                        //Coinbase needs two outputs
+                        if (block.vtx[0]->vout.size() < 2) {
+                		    LogPrintf("CheckBlock() : Coinbase outputs less than 2!\n");
+                		    return state.DoS(100, false, REJECT_INVALID, "bad-txns-vout-sizeinvalid");
+                        }
+						
+                        // Check masternode amount
+                        if (block.vtx[0]->vout[1].nValue < masternodePaymentAmount) {
+                            LogPrintf("CheckBlock() : Invalid masternode payment amount!\n");
+                            return state.DoS(100, false, REJECT_INVALID, "bad-txns-vout-mnamountinvalid");
+                        }
+                    } else {
+                        LogPrintf("CheckBlock() : /*Check YIIMP bug*/ Skipping masternode payment check - nHeight %d Hash %s\n", chainActive.Tip()->nHeight+1, block.GetHash().ToString().c_str());
+                    }
+
                     bool foundPaymentAmount = false;
                     bool foundPayee = false;
                     bool foundPaymentAndPayee = false;
