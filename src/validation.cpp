@@ -3193,16 +3193,16 @@ bool CheckBlock(const CBlock& block, CValidationState& state, const Consensus::P
                 // If we don't already have its previous block, skip masternode payment step
                 if (!fIsInitialDownload && pindex != NULL)
                 {
-					if ( pindex->nHeight > 124500 ) {
-                	    //Check YIIMP bug
-                	    //Coinbase needs two outputs
-                	    if (block.vtx[0]->vout.size() < 2) {
+                    if ( pindex->nHeight > 124500 ) {
+                        //Check YIIMP bug
+                        //Coinbase needs two outputs
+                        if (block.vtx[0]->vout.size() < 2) {
                 		    LogPrintf("CheckBlock() : Coinbase outputs less than 2!\n");
                 		    return state.DoS(100, false, REJECT_INVALID, "bad-txns-vout-sizeinvalid");
                         }
 						
-						// Check masternode amount
-                        if (block.vtx[0]->vout[0].nValue < masternodePaymentAmount || block.vtx[0]->vout[1].nValue < masternodePaymentAmount) {
+                        // Check masternode amount
+                        if (block.vtx[0]->vout[1].nValue < masternodePaymentAmount) {
                             LogPrintf("CheckBlock() : Invalid masternode payment amount!\n");
                             return state.DoS(100, false, REJECT_INVALID, "bad-txns-vout-mnamountinvalid");
                         }
