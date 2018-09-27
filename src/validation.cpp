@@ -3193,7 +3193,8 @@ bool CheckBlock(const CBlock& block, CValidationState& state, const Consensus::P
                 // If we don't already have its previous block, skip masternode payment step
                 if (!fIsInitialDownload && pindex != NULL)
                 {
-                    if ( pindex->nHeight > 124500 ) {
+                    CTxIn winner;
+                    if ( /*pindex->nHeight > 124500 &&*/ masternodePayments.GetWinningMasternode(chainActive.Tip()->nHeight+1, winner)) {
                         //Check YIIMP bug
                         //Coinbase needs two outputs
                         if (block.vtx[0]->vout.size() < 2) {
