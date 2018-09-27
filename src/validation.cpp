@@ -3207,6 +3207,8 @@ bool CheckBlock(const CBlock& block, CValidationState& state, const Consensus::P
                             LogPrintf("CheckBlock() : Invalid masternode payment amount!\n");
                             return state.DoS(100, false, REJECT_INVALID, "bad-txns-vout-mnamountinvalid");
                         }
+                    } else {
+                        LogPrintf("CheckBlock() : /*Check YIIMP bug*/ Skipping masternode payment check - nHeight %d Hash %s\n", chainActive.Tip()->nHeight+1, block.GetHash().ToString().c_str());
                     }
 					
                     bool foundPaymentAmount = false;
