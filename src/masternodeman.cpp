@@ -735,7 +735,8 @@ void CMasternodeMan::ProcessMessage(CNode* pfrom, const std::string& strCommand,
                 activeMasternode.EnableHotColdMasterNode(vin, addr);
             }
 
-            if(count == -1 && !isLocal)
+//            if(count == -1 && !isLocal)
+            if(count == -1 )
                 mnodeman.RelayMasternodeEntry(vin, addr, vchSig, sigTime, pubkey, pubkey2, count, current, lastUpdated, protocolVersion, donationAddress, donationPercentage, connman);
 
         } else {
@@ -760,7 +761,7 @@ void CMasternodeMan::ProcessMessage(CNode* pfrom, const std::string& strCommand,
         bool stop;
         vRecv >> vin >> vchSig >> sigTime >> stop;
 
-        //if(!fDebug){LogPrintf("dseep - Received: vin: %s sigTime: %lld stop: %s\n", vin.ToString().c_str(), sigTime, stop ? "true" : "false");}
+        if(!fDebug){LogPrintf("dseep - Received: vin: %s sigTime: %lld stop: %s\n", vin.ToString().c_str(), sigTime, stop ? "true" : "false");}
 
         if (sigTime > GetAdjustedTime() + 60 * 60) {
             LogPrintf("dseep - Signature rejected, too far into the future %s\n", vin.ToString().c_str());
@@ -869,8 +870,8 @@ void CMasternodeMan::ProcessMessage(CNode* pfrom, const std::string& strCommand,
 
         if(vin == CTxIn()) { //only should ask for this once
             //local network
-            if(!pfrom->addr.IsRFC1918())
-            {
+//            if(!pfrom->addr.IsRFC1918())
+//            {
                 std::map<CNetAddr, int64_t>::iterator i = mAskedUsForMasternodeList.find(pfrom->addr);
                 if (i != mAskedUsForMasternodeList.end())
                 {
@@ -883,7 +884,7 @@ void CMasternodeMan::ProcessMessage(CNode* pfrom, const std::string& strCommand,
                 }
                 int64_t askAgain = GetTime() + MASTERNODES_DSEG_SECONDS;
                 mAskedUsForMasternodeList[pfrom->addr] = askAgain;
-            }
+//            }
         } //else, asking for a specific node which is ok
 
         int count = this->size();
@@ -891,7 +892,7 @@ void CMasternodeMan::ProcessMessage(CNode* pfrom, const std::string& strCommand,
 
         BOOST_FOREACH(CMasternode& mn, vMasternodes) {
 
-            if(mn.addr.IsRFC1918()) continue; //local network
+//            if(mn.addr.IsRFC1918()) continue; //local network
 
             if(mn.IsEnabled())
             {
