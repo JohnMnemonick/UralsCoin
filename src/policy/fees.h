@@ -4,8 +4,8 @@
 // Copyright (c) 2015-2017 The Bitsend developers
 // Distributed under the MIT software license, see the accompanying
 // file COPYING or http://www.opensource.org/licenses/mit-license.php.
-#ifndef BITSEND_POLICYESTIMATOR_H
-#define BITSEND_POLICYESTIMATOR_H
+#ifndef URALS_POLICYESTIMATOR_H
+#define URALS_POLICYESTIMATOR_H
 
 #include "amount.h"
 #include "uint256.h"
@@ -278,4 +278,4 @@ private:
     std::set<double> feeset;
     FastRandomContext insecure_rand;
 };
-#endif /*BITSEND_POLICYESTIMATOR_H */
+#endif /*URALS_POLICYESTIMATOR_H */

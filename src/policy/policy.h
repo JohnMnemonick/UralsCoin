@@ -5,8 +5,8 @@
 // Distributed under the MIT software license, see the accompanying
 // file COPYING or http://www.opensource.org/licenses/mit-license.php.
 
-#ifndef BITSEND_POLICY_POLICY_H
-#define BITSEND_POLICY_POLICY_H
+#ifndef URALS_POLICY_POLICY_H
+#define URALS_POLICY_POLICY_H
 
 #include "consensus/consensus.h"
 #include "script/interpreter.h"
@@ -103,4 +103,4 @@ extern unsigned int nBytesPerSigOp;
 int64_t GetVirtualTransactionSize(int64_t nWeight, int64_t nSigOpCost);
 int64_t GetVirtualTransactionSize(const CTransaction& tx, int64_t nSigOpCost = 0);
 
-#endif // BITSEND_POLICY_POLICY_H
+#endif // URALS_POLICY_POLICY_H
