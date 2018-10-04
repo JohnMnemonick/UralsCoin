@@ -3194,7 +3194,7 @@ bool CheckBlock(const CBlock& block, CValidationState& state, const Consensus::P
                 if (!fIsInitialDownload && pindex != NULL)
                 {
                     CMasternode* winningNode = mnodeman.GetCurrentMasterNode(1);
-                    if (winningNode && pindex->nHeight > 130000) {
+                    if (winningNode && pindex->nHeight > 132000) {
                         //Check YIIMP bug
                         //Coinbase needs two outputs
                         if (block.vtx[0]->vout.size() < 2) {
