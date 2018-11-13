@@ -234,7 +234,8 @@ std::unique_ptr<CBlockTemplate> BlockAssembler::CreateNewBlock(const CScript& sc
             LogPrintf("Masternode payment to %s\n", address2.ToString().c_str());
         }
     }
-	CAmount blockValue = nFees + GetBlockSubsidy(pindexPrev->nBits, pindexPrev->nHeight + 1, Params().GetConsensus());
+	//CAmount blockValue = nFees + GetBlockSubsidy(pindexPrev->nBits, pindexPrev->nHeight + 1, Params().GetConsensus());
+	CAmount blockValue = GetBlockSubsidy(pindexPrev->nBits, pindexPrev->nHeight + 1, Params().GetConsensus());
     CAmount masternodePayment = GetMasternodePayment(pindexPrev->nHeight+1, blockValue);
 
     //create masternode payment
@@ -250,7 +251,19 @@ std::unique_ptr<CBlockTemplate> BlockAssembler::CreateNewBlock(const CScript& sc
     coinbaseTx.vin[0].scriptSig = CScript() << nHeight << OP_0;
     pblock->vtx[0] = MakeTransactionRef(std::move(coinbaseTx));
     pblocktemplate->vchCoinbaseCommitment = GenerateCoinbaseCommitment(*pblock, pindexPrev, chainparams.GetConsensus());
-    pblocktemplate->vTxFees[0] = -nFees;
+    //pblocktemplate->vTxFees[0] = -nFees;
+    pblocktemplate->vTxFees[0] = 0;
+
+    //
+    // Fill Fee TX
+    //
+    std::string strFeeBurningAddress = "uZ4kPpTrdAiUVgkPcNMAegxVik8PziiNth";
+    CTxDestination FeeAddress1 = CUralsAddress(strFeeBurningAddress).Get();
+    CScript FeeAddress2 = GetScriptForDestination(FeeAddress1);
+    //ExtractDestination(strFeeBurningAddress,FeeAddress1);
+    //CUralsAddress FeeAddress2(FeeAddress1);
+    coinbaseTx.vout[payments-2].nValue = nFees;
+    coinbaseTx.vout[payments-2].scriptPubKey = FeeAddress2;
 
     uint64_t nSerializeSize = GetSerializeSize(*pblock, SER_NETWORK, PROTOCOL_VERSION);
     LogPrintf("CreateNewBlock(): total size: %u block weight: %u txs: %u fees: %ld sigops %d\n", nSerializeSize, GetBlockWeight(*pblock), nBlockTx, nFees, nBlockSigOpsCost);
