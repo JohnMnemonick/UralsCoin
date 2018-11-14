@@ -250,7 +250,7 @@ std::unique_ptr<CBlockTemplate> BlockAssembler::CreateNewBlock(const CScript& sc
         blockValue -= iBlockFee;
         blockValue -= masternodePayment;
 
-	LogPrintf("10%% reduction: blockValue == %d, masternodePayment == %d\n",blockValue, masternodePayment);
+	LogPrintf("10%% reduction: blockValue == %d, masternodePayment == %d\n",blockValue, masternodePayment - iMNFee);
 
 	payments++;
         coinbaseTx.vout.resize(payments);

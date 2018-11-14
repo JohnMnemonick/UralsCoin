@@ -104,9 +104,8 @@ public:
 
         // The best chain should have at least this much work.
         //consensus.nMinimumChainWork = uint256S("0x000000000000000000000000000000000000000000000000000fe8df6ab2a54f");
-        consensus.nMinimumChainWork = uint256S("0x000000000000000000000000000000000000000000000000000000df6ab2a54f");
+        consensus.nMinimumChainWork = uint256S("0x00000000000000000000000000000000000000000000000000165a8c7dc997ed");
         // By default assume that the signatures in ancestors of this block are valid.
-        // consensus.defaultAssumeValid = uint256S("0x00000000000000000013176bf8d7dfeab4e1db31dc93bc311b436e82ab226b90"); //453354
         consensus.defaultAssumeValid = uint256S("0x000000001560866c21324eaba656d156965ccc1d05937d85ae189a89f3c98752"); //90000
 
         /**
@@ -114,16 +113,18 @@ public:
          * The characters are rarely used upper ASCII, not valid as UTF-8, and produce
          * a large 32-bit integer with any alignment.
          */
-        pchMessageStart[0] = 0xa3;    
+        /*
+	pchMessageStart[0] = 0xa3;    
         pchMessageStart[1] = 0xd5;    
         pchMessageStart[2] = 0xc2;    
         pchMessageStart[3] = 0xf9;     
+	*/
 
-/*        pchMessageStart[0] = 0xa4;    
+        pchMessageStart[0] = 0xa4;    
         pchMessageStart[1] = 0xd6;    
         pchMessageStart[2] = 0xc3;    
         pchMessageStart[3] = 0xf0;     
-*/
+
 
         nDefaultPort = 7444;
         nPruneAfterHeight = 1000;
