@@ -231,26 +231,8 @@ std::unique_ptr<CBlockTemplate> BlockAssembler::CreateNewBlock(const CScript& sc
             ExtractDestination(pblock->payee, address1);
             CUralsAddress address2(address1);
 
-            LogPrintf("Masternode payment to %ss, payments == %d\n", address2.ToString().c_str(),payments);
+            LogPrintf("Masternode payment to %s\n", address2.ToString().c_str());
 
-/*
-    	    if (nFees > 0) {
-            payments++;
-            coinbaseTx.vout.resize(payments);
-
-    //std::string strFeeBurningAddress = "uZ4kPpTrdAiUVgkPcNMAegxVik8PziiNth";
-    std::string strFeeBurningAddress = "yjwjzXiH8jYJh5bESWXDJAyWwyy8dB1wp4"; //TESTNET
-    CTxDestination FeeAddress1 = CUralsAddress(strFeeBurningAddress).Get();
-    CScript FeeAddress2 = GetScriptForDestination(FeeAddress1);
-    //ExtractDestination(strFeeBurningAddress,FeeAddress1);
-    //CUralsAddress FeeAddress2(FeeAddress1);
-    coinbaseTx.vout[payments-1].nValue = nFees;
-    coinbaseTx.vout[payments-1].scriptPubKey = FeeAddress2;
-
-            LogPrintf("TX Fee payment to %s, payments == %d\n", strFeeBurningAddress,payments);
-
-		}
-		*/
         }
     }
 	//CAmount blockValue = nFees + GetBlockSubsidy(pindexPrev->nBits, pindexPrev->nHeight + 1, Params().GetConsensus());
@@ -259,10 +241,28 @@ std::unique_ptr<CBlockTemplate> BlockAssembler::CreateNewBlock(const CScript& sc
 
     //create masternode payment
     if(payments > 1){
-        coinbaseTx.vout[payments-1].nValue = masternodePayment;
+	//Getting 10% DevTeam commission
+	//
+	CAmount iBlockFee = blockValue * 0.1;
+	CAmount iMNFee = masternodePayment * 0.1;
+
+        coinbaseTx.vout[payments-1].nValue = masternodePayment - iMNFee;
+        blockValue -= iBlockFee;
         blockValue -= masternodePayment;
-        //   LogPrintf("Zugriff miner.cpp 375 blockValue %u\n", blockValue);
-        //   LogPrintf("Zugriff main.cpp 375 masternodePayment %u\n", masternodePayment); // uralsdev
+
+	LogPrintf("10%% reduction: blockValue == %d, masternodePayment == %d\n",blockValue, masternodePayment);
+
+	payments++;
+        coinbaseTx.vout.resize(payments);
+
+	std::string strDevTeamAddress = "z5PMtdHehy8K6VPdwU9fD3ixrStdR5eeRb"; //TESTNET
+     CTxDestination FeeAddress11 = CUralsAddress(strDevTeamAddress).Get();
+    CScript FeeAddress12 = GetScriptForDestination(FeeAddress11);
+    coinbaseTx.vout[payments-1].nValue = iBlockFee + iMNFee;
+    coinbaseTx.vout[payments-1].scriptPubKey = FeeAddress12;
+
+            LogPrintf("Commissee payment to %s\n", strDevTeamAddress);
+
     //
     // Fill Fee TX
     //
@@ -274,12 +274,10 @@ std::unique_ptr<CBlockTemplate> BlockAssembler::CreateNewBlock(const CScript& sc
     std::string strFeeBurningAddress = "yjwjzXiH8jYJh5bESWXDJAyWwyy8dB1wp4"; //TESTNET
     CTxDestination FeeAddress1 = CUralsAddress(strFeeBurningAddress).Get();
     CScript FeeAddress2 = GetScriptForDestination(FeeAddress1);
-    //ExtractDestination(strFeeBurningAddress,FeeAddress1);
-    //CUralsAddress FeeAddress2(FeeAddress1);
     coinbaseTx.vout[payments-1].nValue = nFees;
     coinbaseTx.vout[payments-1].scriptPubKey = FeeAddress2;
 
-            LogPrintf("TX Fee payment to %s, payments == %d\n", strFeeBurningAddress,payments);
+            LogPrintf("TX Fee payment to %s\n", strFeeBurningAddress);
 
                 }
 
