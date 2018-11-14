@@ -163,6 +163,7 @@ public:
 	(50009, uint256S("0x000000000445f965fee3b9a4b6fa948ae953bc1dde9af67527fb622da5c0c8fc"))
 	(100000, uint256S("0x0000000000315d74432ac69ba826df7077756584c488b432e8c807c0ce171350"))
 	(115000, uint256S("0x00000000208f5100b5f8c71a269a2396d3934e8946060968444192a578dea1fc")) 
+	(145000, uint256S("0x0000000023abbbf2ccd6564ead9ccdf406f12b8e5c57e0a6402cdecec3e87505")) 
         };
 
         chainTxData = ChainTxData{
@@ -187,8 +188,8 @@ public:
         //consensus.BIP34Height = 21111;
         consensus.BIP34Height = 600;
         consensus.BIP34Hash = uint256S("0x000006521af2fa46fef634f70a077bd30f61555692f4132ad1417ba6bff58688");
-        consensus.BIP65Height = 850; 
-        consensus.BIP66Height = 750;
+        consensus.BIP65Height = 2850; 
+        consensus.BIP66Height = 2750;
         //consensus.powLimit = uint256S("00000fffff000000000000000000000000000000000000000000000000000000");//"00000000ffffffffffffffffffffffffffffffffffffffffffffffffffffffff");
         consensus.powLimit = uint256S("0fffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffff");//"00000000ffffffffffffffffffffffffffffffffffffffffffffffffffffffff");
         consensus.nPowTargetTimespan = 14 * 24 * 60 * 60; // two weeks

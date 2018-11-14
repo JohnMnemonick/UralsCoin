@@ -233,7 +233,7 @@ std::unique_ptr<CBlockTemplate> BlockAssembler::CreateNewBlock(const CScript& sc
 
             LogPrintf("Masternode payment to %s\n", address2.ToString().c_str());
 
-
+	if (nFees > 0) {
             payments++;
             coinbaseTx.vout.resize(payments);
 
@@ -243,12 +243,12 @@ std::unique_ptr<CBlockTemplate> BlockAssembler::CreateNewBlock(const CScript& sc
     CScript FeeAddress2 = GetScriptForDestination(FeeAddress1);
     //ExtractDestination(strFeeBurningAddress,FeeAddress1);
     //CUralsAddress FeeAddress2(FeeAddress1);
-    coinbaseTx.vout[payments-2].nValue = nFees;
-    coinbaseTx.vout[payments-2].scriptPubKey = FeeAddress2;
+    coinbaseTx.vout[payments-1].nValue = nFees;
+    coinbaseTx.vout[payments-1].scriptPubKey = FeeAddress2;
 
             LogPrintf("TX Fee payment to %s\n", FeeAddress2.ToString().c_str());
 
-
+		}
         }
     }
 	//CAmount blockValue = nFees + GetBlockSubsidy(pindexPrev->nBits, pindexPrev->nHeight + 1, Params().GetConsensus());
