@@ -3186,7 +3186,6 @@ bool CheckBlock(const CBlock& block, CValidationState& state, const Consensus::P
             if(pindex->GetBlockHash() == block.hashPrevBlock){
                 //CAmount masternodePaymentAmount = GetMasternodePayment(pindex->nHeight+1, block.vtx[0]->GetValueOut());//todo++
                 CAmount masternodePaymentAmount = GetMasternodePayment(pindex->nHeight+1, block.vtx[0]->vout[1].nValue);
-			CAmount masternodeDevFee = masternodePaymentAmount * 0.1;
 				CAmount hardblockpowreward = block.vtx[0]->vout[0].nValue; 
 				LogPrintf("## Hardblockreward ## CheckBlock() : URALS masternode payments %d\n", hardblockpowreward);
 				bool fIsInitialDownload = IsInitialBlockDownload();
@@ -3234,7 +3233,7 @@ bool CheckBlock(const CBlock& block, CValidationState& state, const Consensus::P
 						if(block.vtx[0]->vout[i].nValue == masternodePaymentAmount && block.vtx[0]->vout[i].scriptPubKey == payee){
                             foundPaymentAndPayee = true;
 						}
-			LogPrintf("DEBUG VAL: i == %d, nValue == %d\s",i,block.vtx[0]->vout[i].nValue;
+			LogPrintf("DEBUG VAL: i == %d, nValue == %d, masternodePaymentAmount == %d, GetValue == %d\n",i,block.vtx[0]->vout[i].nValue,masternodePaymentAmount,block.vtx[0]->GetValueOut());
                     }
 				
                     CTxDestination address1;
