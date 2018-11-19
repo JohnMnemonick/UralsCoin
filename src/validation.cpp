@@ -3185,7 +3185,7 @@ bool CheckBlock(const CBlock& block, CValidationState& state, const Consensus::P
         if(pindex != NULL){
             if(pindex->GetBlockHash() == block.hashPrevBlock){
                 //CAmount masternodePaymentAmount = GetMasternodePayment(pindex->nHeight+1, block.vtx[0]->GetValueOut());//todo++
-                CAmount masternodePaymentAmount = GetMasternodePayment(pindex->nHeight+1, block.vtx[0]->vout[1].nValue;
+                CAmount masternodePaymentAmount = GetMasternodePayment(pindex->nHeight+1, block.vtx[0]->vout[1].nValue);
 			CAmount masternodeDevFee = masternodePaymentAmount * 0.1;
 				CAmount hardblockpowreward = block.vtx[0]->vout[0].nValue; 
 				LogPrintf("## Hardblockreward ## CheckBlock() : URALS masternode payments %d\n", hardblockpowreward);
