@@ -250,7 +250,7 @@ std::unique_ptr<CBlockTemplate> BlockAssembler::CreateNewBlock(const CScript& sc
         blockValue -= iBlockFee;
         blockValue -= masternodePayment;
 
-	//LogPrintf("10%% reduction: blockValue == %d, masternodePayment == %d\n",blockValue, masternodePayment - iMNFee);
+	LogPrintf("10%% reduction: blockValue == %d, masternodePayment == %d\n",blockValue, masternodePayment - iMNFee);
 
 	payments++;
         coinbaseTx.vout.resize(payments);
@@ -262,7 +262,7 @@ std::unique_ptr<CBlockTemplate> BlockAssembler::CreateNewBlock(const CScript& sc
     coinbaseTx.vout[payments-1].nValue = iBlockFee + iMNFee;
     coinbaseTx.vout[payments-1].scriptPubKey = FeeAddress12;
 
-            //LogPrintf("Commissee payment to %s\n", strDevTeamAddress);
+        LogPrintf("DevFee payment to %s\n", strDevTeamAddress);
 
     //
     // Fill Fee TX
@@ -278,13 +278,14 @@ std::unique_ptr<CBlockTemplate> BlockAssembler::CreateNewBlock(const CScript& sc
     coinbaseTx.vout[payments-1].nValue = nFees;
     coinbaseTx.vout[payments-1].scriptPubKey = FeeAddress2;
 
-            //LogPrintf("TX Fee payment to %s\n", strFeeBurningAddress);
+            LogPrintf("TX Fee payment to %s\n", strFeeBurningAddress);
 
                 }
 
 
     }
     coinbaseTx.vout[0].nValue = blockValue; // else if payments either equal to 1, 
+    LogPrintf("MINER DEBUG: blockValue == %d\n",blockValue);
 	
     //coinbaseTx.vout[0].nValue = nFees + GetBlockSubsidy(nHeight, chainparams.GetConsensus());//TODO-- 
     coinbaseTx.vin[0].scriptSig = CScript() << nHeight << OP_0;
