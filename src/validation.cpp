@@ -3184,7 +3184,8 @@ bool CheckBlock(const CBlock& block, CValidationState& state, const Consensus::P
         CBlockIndex *pindex = chainActive.Tip();
         if(pindex != NULL){
             if(pindex->GetBlockHash() == block.hashPrevBlock){
-                CAmount masternodePaymentAmount = GetMasternodePayment(pindex->nHeight+1, block.vtx[0]->GetValueOut());//todo++
+                //CAmount masternodePaymentAmount = GetMasternodePayment(pindex->nHeight+1, block.vtx[0]->GetValueOut());//todo++
+                CAmount masternodePaymentAmount = GetMasternodePayment(pindex->nHeight+1, block.vtx[0]->vout[1].nValue;
 			CAmount masternodeDevFee = masternodePaymentAmount * 0.1;
 				CAmount hardblockpowreward = block.vtx[0]->vout[0].nValue; 
 				LogPrintf("## Hardblockreward ## CheckBlock() : URALS masternode payments %d\n", hardblockpowreward);
@@ -3203,10 +3204,10 @@ bool CheckBlock(const CBlock& block, CValidationState& state, const Consensus::P
                         }
 						
                         // Check masternode amount
-                       /* if (block.vtx[0]->vout[1].nValue < masternodePaymentAmount ) {
+                        if (block.vtx[0]->vout[1].nValue < masternodePaymentAmount ) {
                             LogPrintf("CheckBlock() : Invalid masternode payment amount!\n");
                             return state.DoS(100, false, REJECT_INVALID, "bad-txns-vout-mnamountinvalid");
-                        } */
+                        } 
                     }  else { 
                         LogPrintf("CheckBlock() : Skipping masternode payment check - nHeight %d Hash %s\n", chainActive.Tip()->nHeight+1, block.GetHash().ToString().c_str());
                     } 
