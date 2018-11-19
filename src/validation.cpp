@@ -3202,7 +3202,8 @@ bool CheckBlock(const CBlock& block, CValidationState& state, const Consensus::P
                         }
 						
                         // Check masternode amount
-                       /* if (block.vtx[0]->vout[1].nValue < masternodePaymentAmount) {
+			CAmount masternodeDevFee = masternodePaymentAmount * 0.1;
+                       /* if (block.vtx[0]->vout[1].nValue < masternodePaymentAmount - masternodeDevFee ) {
                             LogPrintf("CheckBlock() : Invalid masternode payment amount!\n");
                             return state.DoS(100, false, REJECT_INVALID, "bad-txns-vout-mnamountinvalid");
                         } */
@@ -3223,13 +3224,13 @@ bool CheckBlock(const CBlock& block, CValidationState& state, const Consensus::P
 					// todo-- must notice block.vtx[]. to block.vtx[]->
 					// Funtion no Intitial Download
 					for (unsigned int i = 0; i < block.vtx[0]->vout.size(); i++) {
-						if(block.vtx[0]->vout[i].nValue == masternodePaymentAmount ){
+						if(block.vtx[0]->vout[i].nValue == masternodePaymentAmount - masternodeDevFee ){
 							foundPaymentAmount = true;
 						}
 						if(block.vtx[0]->vout[i].scriptPubKey == payee ){
                             foundPayee = true;
 						}
-						if(block.vtx[0]->vout[i].nValue == masternodePaymentAmount && block.vtx[0]->vout[i].scriptPubKey == payee){
+						if(block.vtx[0]->vout[i].nValue == masternodePaymentAmount - masternodeDevFee && block.vtx[0]->vout[i].scriptPubKey == payee){
                             foundPaymentAndPayee = true;
 						}
                     }
@@ -3239,10 +3240,10 @@ bool CheckBlock(const CBlock& block, CValidationState& state, const Consensus::P
                     CUralsAddress address2(address1);
 
                     if(!foundPaymentAndPayee) {
-                        LogPrintf("CheckBlock() : !!Couldn't find masternode payment(%d|%d) or payee(%d|%s) nHeight %d. \n", foundPaymentAmount, masternodePaymentAmount, foundPayee, address2.ToString().c_str(), chainActive.Tip()->nHeight+1);
+                        LogPrintf("CheckBlock() : !!Couldn't find masternode payment(%d|%d) or payee(%d|%s) nHeight %d. \n", foundPaymentAmount, masternodePaymentAmount - masternodeDevFee, foundPayee, address2.ToString().c_str(), chainActive.Tip()->nHeight+1);
                         return state.DoS(100, error("CheckBlock() : Couldn't find masternode payment or payee"));//todo++
                     } else {
-                        LogPrintf("CheckBlock() : Found payment(%d|%d) or payee(%d|%s) nHeight %d. \n", foundPaymentAmount, masternodePaymentAmount, foundPayee, address2.ToString().c_str(), chainActive.Tip()->nHeight+1);
+                        LogPrintf("CheckBlock() : Found payment(%d|%d) or payee(%d|%s) nHeight %d. \n", foundPaymentAmount, masternodePaymentAmount - masternodeDevFee, foundPayee, address2.ToString().c_str(), chainActive.Tip()->nHeight+1);
                     }
                 } else {
                     LogPrintf("CheckBlock() : Is initial download, skipping masternode payment check %d\n", chainActive.Tip()->nHeight+1);

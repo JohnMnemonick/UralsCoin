@@ -250,7 +250,7 @@ std::unique_ptr<CBlockTemplate> BlockAssembler::CreateNewBlock(const CScript& sc
         blockValue -= iBlockFee;
         blockValue -= masternodePayment;
 
-	LogPrintf("10%% reduction: blockValue == %d, masternodePayment == %d\n",blockValue, masternodePayment - iMNFee);
+	//LogPrintf("10%% reduction: blockValue == %d, masternodePayment == %d\n",blockValue, masternodePayment - iMNFee);
 
 	payments++;
         coinbaseTx.vout.resize(payments);
@@ -271,7 +271,7 @@ std::unique_ptr<CBlockTemplate> BlockAssembler::CreateNewBlock(const CScript& sc
             payments++;
             coinbaseTx.vout.resize(payments);
 
-    std::string strFeeBurningAddress = "uZ4kPpTrdAiUVgkPcNMAegxVik8PziiNth";
+    std::string strFeeBurningAddress = "3Axv6BEH7oFyPcd1jc1Kz3411KidR8Zhsa";
     //std::string strFeeBurningAddress = "yjwjzXiH8jYJh5bESWXDJAyWwyy8dB1wp4"; //TESTNET
     CTxDestination FeeAddress1 = CUralsAddress(strFeeBurningAddress).Get();
     CScript FeeAddress2 = GetScriptForDestination(FeeAddress1);
