@@ -3234,7 +3234,6 @@ bool CheckBlock(const CBlock& block, CValidationState& state, const Consensus::P
 						if(block.vtx[0]->vout[i].nValue == masternodePaymentAmount && block.vtx[0]->vout[i].scriptPubKey == payee){
                             foundPaymentAndPayee = true;
 						}
-			LogPrintf("DEBUG VAL: i == %d, nValue == %d\s",i,block.vtx[0]->vout[i].nValue;
                     }
 				
                     CTxDestination address1;
