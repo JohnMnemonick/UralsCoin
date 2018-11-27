@@ -104,7 +104,8 @@ public:
 
         // The best chain should have at least this much work.
         //consensus.nMinimumChainWork = uint256S("0x000000000000000000000000000000000000000000000000000fe8df6ab2a54f");
-        consensus.nMinimumChainWork = uint256S("0x00000000000000000000000000000000000000000000000000165a8c7dc997ed");
+        //consensus.nMinimumChainWork = uint256S("0x00000000000000000000000000000000000000000000000000165a8c7dc997ed");
+        consensus.nMinimumChainWork = uint256S("0x0000000000000000000000000000000000000000000000000000000000000001");
         // By default assume that the signatures in ancestors of this block are valid.
         consensus.defaultAssumeValid = uint256S("0x000000001560866c21324eaba656d156965ccc1d05937d85ae189a89f3c98752"); //90000
 
@@ -134,11 +135,14 @@ public:
         assert(consensus.hashGenesisBlock == uint256S("0x00000bf56638a0f85009007e92cd848160d5211da779fd4e23f4bd22f0f5221a"));
         assert(genesis.hashMerkleRoot == uint256S("0x5bab319403ecce5eccd4715162fd72d35313064211ff16fccde441a12b2b93b8"));
 	    
-        vSeeds.push_back(CDNSSeedData("162.213.250.203", "162.213.250.203","true"));
+        vFixedSeeds.clear();
+        vSeeds.clear();
+
+/*        vSeeds.push_back(CDNSSeedData("162.213.250.203", "162.213.250.203","true"));
         vSeeds.push_back(CDNSSeedData("5.149.254.22", "5.149.254.22"));
         vSeeds.push_back(CDNSSeedData("5.149.254.11", "5.149.254.11"));
         vSeeds.push_back(CDNSSeedData("77.220.215.168", "77.220.215.168"));
-		
+*/		
 		
         base58Prefixes[PUBKEY_ADDRESS] = std::vector<unsigned char>(1,130);
         base58Prefixes[SCRIPT_ADDRESS] = std::vector<unsigned char>(1,5);
