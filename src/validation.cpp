@@ -3184,10 +3184,10 @@ bool CheckBlock(const CBlock& block, CValidationState& state, const Consensus::P
         CBlockIndex *pindex = chainActive.Tip();
         if(pindex != NULL){
             if(pindex->GetBlockHash() == block.hashPrevBlock){
-                //CAmount masternodePaymentAmount = GetMasternodePayment(pindex->nHeight+1, block.vtx[0]->GetValueOut());//todo++
-                CAmount masternodePaymentAmount = GetMasternodePayment(pindex->nHeight+1, block.vtx[0]->vout[1].nValue);
-			CAmount masternodeDevFee = masternodePaymentAmount * 0.1;
-				CAmount hardblockpowreward = block.vtx[0]->vout[0].nValue; 
+                CAmount masternodePaymentAmount = GetMasternodePayment(pindex->nHeight+1, block.vtx[0]->GetValueOut());//todo++
+                //CAmount masternodePaymentAmount = GetMasternodePayment(pindex->nHeight+1, block.vtx[0]->vout[0].nValue);
+			//CAmount masternodeDevFee = masternodePaymentAmount * 0.1;
+				CAmount hardblockpowreward = block.vtx[0]->vout[1].nValue; 
 				LogPrintf("## Hardblockreward ## CheckBlock() : URALS masternode payments %d\n", hardblockpowreward);
 				bool fIsInitialDownload = IsInitialBlockDownload();
 
@@ -3204,13 +3204,19 @@ bool CheckBlock(const CBlock& block, CValidationState& state, const Consensus::P
                         }
 						
                         // Check masternode amount
-                        if (block.vtx[0]->vout[1].nValue < masternodePaymentAmount ) {
+                        if (block.vtx[0]->vout[0].nValue < masternodePaymentAmount ) {
                             LogPrintf("CheckBlock() : Invalid masternode payment amount!\n");
                             return state.DoS(100, false, REJECT_INVALID, "bad-txns-vout-mnamountinvalid");
                         } 
                     }  else { 
                         LogPrintf("CheckBlock() : Skipping masternode payment check - nHeight %d Hash %s\n", chainActive.Tip()->nHeight+1, block.GetHash().ToString().c_str());
                     } 
+		LogPrintf("DEBUG VALID: masternodePaymentAmount == %d, hardblockpowreward == %d\n",masternodePaymentAmount,hardblockpowreward);
+		LogPrintf("DEBUG VALID: block.vtx[0]->vout[0].nValue == %d\n",block.vtx[0]->vout[0].nValue);
+		LogPrintf("DEBUG VALID: block.vtx[0]->vout[1].nValue == %d\n",block.vtx[0]->vout[1].nValue);
+		LogPrintf("DEBUG VALID: block.vtx[0]->vout[2].nValue == %d\n",block.vtx[0]->vout[2].nValue);
+		LogPrintf("DEBUG VALID: block.vtx[0]->vout[3].nValue == %d\n",block.vtx[0]->vout[3].nValue);
+
 
                     bool foundPaymentAmount = false;
                     bool foundPayee = false;
@@ -3234,6 +3240,7 @@ bool CheckBlock(const CBlock& block, CValidationState& state, const Consensus::P
 						if(block.vtx[0]->vout[i].nValue == masternodePaymentAmount && block.vtx[0]->vout[i].scriptPubKey == payee){
                             foundPaymentAndPayee = true;
 						}
+		LogPrintf("DEBUG VALID IN-CYCLE: block.vtx[0]->vout[%d].nValue == %d\n",i,block.vtx[0]->vout[i].nValue);
                     }
 				
                     CTxDestination address1;
